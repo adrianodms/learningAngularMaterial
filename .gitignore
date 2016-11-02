@@ -1,3 +1,12 @@
+# Dist folder
+app/dist
+
+### Bower ###
+bower_components
+.bower-cache
+.bower-registry
+.bower-tmp
+
 # Logs
 logs
 *.log

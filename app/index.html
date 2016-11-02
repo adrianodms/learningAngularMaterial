@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-ng-app="contactManagerApp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    <title>Document</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="./assets/app.css">
+    <style>
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
+
+</head>
+<body ng-cloak data-ng-controller="MainController as vm">
+    <h1>Hello Word</h1>
+     {{vm.message}}
+    <script src="./bower_components/angular/angular.js"></script>
+	<script src="./bower_components/angular-animate/angular-animate.min.js"></script>
+	<script src="./bower_components/angular-aria/angular-aria.min.js"></script>
+	<script src="./bower_components/angular-material/angular-material.min.js"></script>
+    <script src="./dist/controllers/mainController.js"></script>
+    <script src="./dist/boot.js"></script>
+</body>
+</html>
