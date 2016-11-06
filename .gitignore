@@ -1,6 +1,3 @@
-# Dist folder
-app/dist
-
 ### Bower ###
 bower_components
 .bower-cache
