@@ -2,13 +2,15 @@
 var ContactManagerApp;
 (function (ContactManagerApp) {
     var MainController = (function () {
-        function MainController(userService, $mdSidenav) {
+        function MainController(userService, $mdSidenav, $mdToast) {
             this.userService = userService;
             this.$mdSidenav = $mdSidenav;
+            this.$mdToast = $mdToast;
             this.searchText = "";
             this.users = [];
             this.selected = null;
             this.message = "Hello from our controller";
+            this.tabIndex = 0;
             var self = this;
             this.userService
                 .loadAllUsers()
@@ -27,8 +29,20 @@ var ContactManagerApp;
             if (sidenav.isOpen()) {
                 sidenav.close();
             }
+            this.tabIndex = 0;
         };
-        MainController.$inject = ['userService', '$mdSidenav'];
+        MainController.prototype.removeNote = function (note) {
+            var foundIndex = this.selected.notes.indexOf(note);
+            this.selected.notes.splice(foundIndex, 1);
+            this.openToast('Note was removed');
+        };
+        MainController.prototype.openToast = function (message) {
+            this.$mdToast.show(this.$mdToast.simple()
+                .textContent(message)
+                .position('top right')
+                .hideDelay(3000));
+        };
+        MainController.$inject = ['userService', '$mdSidenav', '$mdToast'];
         return MainController;
     }());
     ContactManagerApp.MainController = MainController;

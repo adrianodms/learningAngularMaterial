@@ -2,30 +2,30 @@
     <md-toolbar>
         <h1>Contacts</h1>
     </md-toolbar>
-    <md-content>
-        <div layout-padding>
-            <md-autocomplete
-            md-search-text="vm.searchText"
-            md-items="item in vm.users | filter: vm.searchText"
-            md-item-text="item.name"
-            placeholder="filter"
-            >                
+
+    <div layout-padding>
+        <md-autocomplete md-search-text="vm.searchText" md-items="item in vm.users | filter: vm.searchText" md-item-text="item.name"
+            placeholder="filter">
             <md-item-template>
                 <span md-highlight-text="vm.searchText" md.highlight-flags="^i">{{item.name}}</span>
             </md-item-template>
             <md-not-found>
                 No user matching "{{vm.searchText}}" were found.
             </md-not-found>
-            </md-autocomplete>
-        </div>
+        </md-autocomplete>
+    </div>
+    <md-content class="scrollable-nav-content">
         <md-list>
             <md-list-item data-ng-repeat="user in vm.users | filter: vm.searchText | orderBy:'name'">
-                <md-button ng-click="vm.selectUser(user)" 
-                ng-class="{'selected':user === vm.selected}">
+                <md-button ng-click="vm.selectUser(user)" ng-class="{'selected':user === vm.selected}">
                     <md-icon md-svg-icon="{{user.avatar}}" class="avatar"></md-icon>
                     {{user.name}}
-                </md-button>               
+                </md-button>
             </md-list-item>
         </md-list>
     </md-content>
+    <md-button class="md-fab md-fab-bottom-right" ng-click="vm.addUser($event)">
+        <ng-md-icon icon="add">
+            </md-icon>
+    </md-button>
 </md-sidenav>
