@@ -22,8 +22,5 @@ module ContactManagerApp{
         submitContact(action): void{
             this.$mdBottomSheet.hide(action);
         }
-
-
     }
-
 }

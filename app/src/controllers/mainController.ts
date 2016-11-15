@@ -34,6 +34,7 @@ module ContactManagerApp {
     users: User[] = [];
     selected: User = null;
     tabIndex: number = 0;
+    newNote: Note = new Note('', null);
 
     toggleSideNav(): void {
       this.$mdSidenav('left').toggle();
@@ -73,7 +74,10 @@ module ContactManagerApp {
         controllerAs: 'ctrl',
         clickOutsideToClose: true,
         fullscreen: useFullScreen
-      }).then((user: User) => {
+      }).then((user: CreateUser) => {
+        var newUser = User.fromCreate(user);
+        self.users.push(newUser);
+        self.selectUser(newUser);
         self.openToast('User added');
       }, () => {
         console.log('You are cancelled the dialog');
@@ -96,6 +100,24 @@ module ContactManagerApp {
         self.openToast('Cleared notes')
       });
     }
+
+    formScope: any;
+
+    setFormScope(scope){
+      this.formScope = scope;
+    }
+
+    addNote(){
+      this.selected.notes.push(this.newNote);
+
+      // reset the form;
+      this.formScope.noteForm.$setUntouched();
+      this.formScope.noteForm.$setPristine();
+
+      this.newNote = new Note('', null);
+      this.openToast('Note added');
+    }
+
 
     removeNote(note: Note): void {
       let foundIndex = this.selected.notes.indexOf(note);

@@ -1,14 +1,51 @@
 <md-dialog>
     <form name="userForm" ng-submit="ctrl.save()">
         <md-dialog-content>
-            Content
+            <div layout="column" layout-padding>
+                <div layout-gt-sm="row" layout-wrap>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Avartar </label>
+                        <md-select data-ng-model="ctrl.user.avatar" name="avatar" required>
+                            <md-option ng-repeat="avatar in ctrl.avatars" ng-value="avatar">
+                                <md-icon md-svg-icon="{{avatar}}"></md-icon>
+                            </md-option>
+                            <div ng-messages="userForm.avatar.$error">
+                                <div ng-message="required">This is required</div>
+                            </div>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>First name</label>
+                        <input data-ng-model="ctrl.user.firstName" name="firstName" required>
+                         <div ng-messages="userForm.firstName.$error">
+                                <div ng-message="required">This is required</div>
+                            </div>
+                    </md-input-container>
+                      <md-input-container class="md-block" flex-gt-sm>
+                        <label>Last name</label>
+                        <input data-ng-model="ctrl.user.lastName" name="lastName" required>
+                         <div ng-messages="userForm.lastName.$error">
+                                <div ng-message="required">This is required</div>
+                            </div>
+                    </md-input-container>
+                      <md-input-container class="md-block" flex="100">
+                        <label>Biography</label>
+                        <textarea data-ng-model="ctrl.user.bio" rows="5" name="bio" required>
+                             <div ng-messages="userForm.bio.$error">
+                                <div ng-message="required">This is required</div>
+                            </div>
+                        </textarea>
+                    </md-input-container>
+                </div>
+            </div>
         </md-dialog-content>
-        
+
         <md-dialog-actions latout="row">
             <md-button ng-click="ctrl.cancel()">
                 Cancel
             </md-button>
-            <md-button type="submit" class="md-primary md-raised">
+            <md-button type="submit" class="md-primary md-raised"
+                data-ng-disabled="userForm.$invalid">
                 Save
             </md-button>
         </md-dialog-actions>
